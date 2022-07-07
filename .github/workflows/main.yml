@@ -1,0 +1,17 @@
+name: Merge to master
+on:
+ push:
+    branches: ['Dev']
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Merge Dev -> master
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: Dev
+          target_branch: master
+          github_token: ${{ github.token }}
